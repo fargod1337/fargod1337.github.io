@@ -643,9 +643,9 @@
     var progress = document.getElementById('scrollProgress');
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var updateProgress = function(){
-      var doc = document.documentElement;
-      var max = doc.scrollHeight - doc.clientHeight;
-      var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+      var scroller = document.scrollingElement || document.documentElement;
+      var max = scroller.scrollHeight - window.innerHeight;
+      var pct = max > 0 ? (window.scrollY / max) * 100 : 0;
       progress.style.width = pct + '%';
     };
     window.addEventListener('scroll', updateProgress, {passive:true});
